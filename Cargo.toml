@@ -1,0 +1,24 @@
+[package]
+name = "rshid_win"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "A USB HID library for Windows, implemented directly on setupapi, hid and cfgmgr32"
+license = "BSD-3-Clause"
+readme = "README.md"
+keywords = ["hid", "usb", "windows"]
+categories = ["hardware-support", "os::windows-apis"]
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Devices_DeviceAndDriverInstallation",
+    "Win32_Devices_HumanInterfaceDevice",
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+    "Win32_System_IO",
+] }
+
+[[example]]
+name = "write_report"
+path = "examples/write_report.rs"
